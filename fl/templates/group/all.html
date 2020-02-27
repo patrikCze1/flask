@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+    <h1>Groups</h1>
+
+    <a href="{{ url_for('admin.createGroup') }}">Create group</a>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+    
+            {% for group in groups %}
+            
+            <tr>
+                <td>{{ group.id }}</td>
+                <td>
+                    <a href="{{ url_for('admin.showGroup', id=group.id) }}">
+                        {{ group.name }}
+                    </a>
+                </td>
+                <td>{{ group.active }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  
+    <a href="{{ url_for('admin.index') }}">Back</a>
+    
+{% endblock content %}

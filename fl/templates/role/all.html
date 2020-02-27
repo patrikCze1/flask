@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+    <h1>Roles</h1>
+
+    <a href="{{ url_for('admin.createRole') }}">Create role</a><br>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+    
+            {% for role in roles %}
+            
+            <tr>
+                <td>{{ role.id }}</td>
+                <td>
+                    <a href="{{ url_for('admin.showRole', id=role.id) }}">
+                        {{ role.name }}
+                    </a>
+                </td>
+                <td>{{ role.active }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('admin.index') }}">Back</a>
+  
+{% endblock content %}

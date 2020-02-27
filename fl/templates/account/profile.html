@@ -1,0 +1,40 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+                    <figure class="image is-128x128">
+                        <img src="{{ url_for('static', filename='pictures/' + user.image_file) }}" class="is-rounded"
+                            alt="Profile pic">
+                    </figure>
+                
+                    <h1 class="title">
+                        {{ user.name }}
+                    </h1>
+                
+        <h2>Info</h2>
+        <p>
+            {{ user.email }}
+        </p>
+
+        {{ user.group_id }}
+
+{% if user.id == current_user.id %}
+                <a href="{{ url_for('users.updateUser') }}" class="btn btn-outline-primary">
+                    <i class="fa fa-edit" aria-hidden="true"> </i>
+                    Update profile
+                </a>
+            </p>
+            <p class="control">
+                <a href="{{ url_for('users.changePassword') }}" class="btn btn-outline-warning">
+                    <i class="fa fa-lock" aria-hidden="true"> </i>
+                    Change password
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+{% else %}
+send message
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+    <h1>Role - {{ role.name }}</h1>
+
+    {{ role.id }}
+    {{ role.active }}
+    {{ role.name }}
+    {{ role.value }}
+    {{ role.description }}
+
+    <div class="field is-grouped">
+        <p class="control">
+            <a href="{{ url_for('admin.updateRole', id=role.id) }}" class="btn btn-outline-primary">
+                <i class="fa fa-edit" aria-hidden="true"></i>
+                Edit
+            </a>
+        </p>
+        <p class="control">
+            <a href="{{ url_for('admin.deleteRole', id=role.id) }}" class="btn btn-outline-danger">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                Delete
+            </a>
+        </p>
+    </div>
+        
+    <a href="{{ url_for('admin.roles') }}">Back</a>
+
+{% endblock content %}

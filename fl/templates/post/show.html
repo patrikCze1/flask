@@ -1,0 +1,65 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+<div class="modal" id="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Delete this post</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            Do you want to really delete thi post?
+        </section>
+        <a href="{{ url_for('posts.deletePost', id=post.id) }}" class="button is-danger">Delete</a>
+        <button class="button" onclick="hideModal()">Cancel</button>
+    </div>
+</div>
+
+            <h1 class="title">
+                {{ post.title }}
+            </h1>
+            <p class="subtitle">
+                by
+                <a href="{{ url_for('users.userProfile', id=post.author.id) }}">
+                    {{ post.author.name }}
+                </a>
+            </p>
+        
+
+        <p>{{ post.content }}</p>
+
+
+        {% if post.author.id == current_user.id %}
+        <div class="field is-grouped">
+            <p class="control">
+                <a href="{{ url_for('posts.updatePost', id=post.id) }}" class="btn btn-outline-primary">
+                    <i class="fa fa-edit" aria-hidden="true"></i>
+                    Edit
+                </a>
+            </p>
+            <p class="control">
+                <a id="deletePost" class="btn btn-outline-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Delete
+                </a>
+            </p>
+        </div>
+        {% endif %}
+admin
+        <div class="field is-grouped">
+            <p class="control">
+                <a href="{{ url_for('posts.approvePost', id=post.id) }}" class="btn btn-outline-primary">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Approve
+                </a>
+            </p>
+        </div>
+        <a href="{{ url_for('main.home') }}" class="btn btn-link">
+            Back
+        </a>
+    </div>
+</section>
+
+{% endblock content %}

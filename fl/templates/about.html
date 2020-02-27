@@ -1,0 +1,81 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+      <h1 class="title">
+        About
+      </h1>
+
+      <p>
+        about us...
+      </p>
+
+      <div class="row">
+        <div class="col">
+          <h3>Contact informations</h3>
+          <table class="table is-hoverable">
+            <tr>
+              <td>Name</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td>...</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col">
+          <h3>Map</h3>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2799016323!2d-74.2598713985228!3d40.69767006586894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2scz!4v1579772177685!5m2!1sen!2scz"
+            width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>  
+        </div>
+      </div>
+        
+      <h2 class="title">Contact us</h2>
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="form-row">
+          <div class="col-3">
+            <label class="label">{{ form.email.label }}</label>
+            {{ form.email(class="form-control", type="email", placeholder="Your email") }}
+            {% if form.email.errors %}
+              {% for error in form.email.errors %}
+              <p class="help is-danger">{{ error }}</p>
+              {% endfor %}
+              {% endif %}
+          </div>
+
+          <div class="col-3">
+            <label class="label">{{ form.title.label }}</label>
+            {{ form.title(class="form-control", type="text", placeholder="Title") }}
+            {% if form.title.errors %}
+            {% for error in form.title.errors %}
+            <p class="help is-danger">{{ error }}</p>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">{{ form.text.label }}</label>
+          <div class="control">
+            {% if form.text.errors %}
+            {% for error in form.text.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.text(class="form-control", placeholder="Your message") }}
+          </div>
+        </div>
+
+          {{ form.submit(class="btn btn-info") }}
+
+      </form>
+
+  {% endblock content %}

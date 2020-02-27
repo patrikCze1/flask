@@ -1,0 +1,57 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="title">
+        Home
+    </h1>
+
+    <section class="">
+        <h2 class="title">Posts ({{ posts.total }})</h2>
+        <p class="subtitle">
+            <a href="{{ url_for('posts.createPost') }}" class="btn btn-link">New post</a>
+        </p>
+        filter
+
+        {% for post in posts.items %}
+        <div class="card mb-2">
+            <div class="card-header">
+                <a href="{{ url_for('posts.showPost', id=post.id) }}">{{ post.title }}</a> {{ post.created_at.strftime('%d-%m-%Y') }}
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>{{ post.content[:30] }}</p>
+                <footer class="blockquote-footer">
+                    <a href="{{ url_for('users.userProfile', id=post.author.id) }}">{{ post.author.name }}</a>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        {% endfor %}
+
+        <nav aria-label="pagination">
+            <ul class="pagination pagination-sm">
+                {% for pageNumber in posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                {% if pageNumber %}
+                {% if posts.page == pageNumber %}
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">
+                        {{ pageNumber }}
+                        <span class="sr-only">(current)</span>
+                    </span>
+                </li>
+                {% else  %}
+                <li class="page-item"><a class="page-link" href="{{ url_for('main.home', page=pageNumber) }}">2</a></li>
+                {% endif  %}
+                {% else  %}
+                <li>
+                    <span class="pagination-ellipsis">&hellip;</span>
+                </li>
+                {% endif  %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </section>
+
+    {% endblock content %}

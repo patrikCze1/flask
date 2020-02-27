@@ -1,0 +1,104 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+<h1>Administration</h1>
+
+<h2>List of users</h2>
+
+<form method="GET" action="">
+    
+
+    <div class="form-row align-items-center">
+      <div class="col-sm my-1">
+        <label class="sr-only" for="inlineFormInputName">{{ form.name.label }}</label>
+        {{ form.name(class="form-control", placeholder="Name") }}
+  
+        {% if form.name.errors %}
+        {% for error in form.name.errors %}
+        <div class="invalid-feedback">
+          {{ error }}
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+  
+      <div class="col-sm my-1">
+        <label class="sr-only">{{ form.email.label }}</label>
+        <div class="input-group">
+  
+          {{ form.email(class="form-control", placeholder="Email") }}
+          {% if form.email.errors %}
+          {% for error in form.email.errors %}
+          <div class="invalid-feedback">
+            {{ error }}
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="col-sm my-1">
+        <label class="sr-only" for="categoryInput">Role</label>
+        <div class="input-group">
+        <select class="custom-select my-1 mr-sm-2" id="categoryInput">
+          <option selected>Role</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm my-1">
+        <label class="sr-only" for="categoryInput">Category</label>
+        <div class="input-group">
+        <select class="custom-select my-1 mr-sm-2" id="categoryInput">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+  
+      <div class="col-auto my-1">
+        {{ form.submit(class="btn btn-primary") }}
+      </div>
+    </div>
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Created at</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for user in users %}
+        {{ user }}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>
+                <a href="{{ url_for('users.userProfile', id=user.id) }}">
+                    {{ user.name }}
+                </a>
+            </td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.created_at.strftime('%d-%m-%Y') }}</td>
+            <td><a href="{{ url_for('admin.blockUser', id=user.id) }}">Block</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('admin.index') }}">Back</a>
+
+{% endblock content %}

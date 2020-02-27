@@ -1,0 +1,115 @@
+.container {
+}
+
+body {
+    background-color: rgb(250, 248, 243);
+    color: #1D1D2C;
+}
+
+.invalid-feedback {
+    display: block !important;
+    font-size: medium;
+}
+
+.btn-outline-primary {
+    color: #3CBCC3;
+    border-color: #3CBCC3;
+}
+
+.btn-outline-primary:hover {
+    color: #1D1D2C;
+    border-color: rgb(53, 166, 172);
+    background-color: rgb(53, 166, 172);
+}
+
+.btn-primary {
+    border-color: #3CBCC3;
+    background-color: #3CBCC3;
+}
+
+.btn-primary:hover {
+    color: white;
+    border-color: rgb(53, 166, 172);
+    background-color: rgb(53, 166, 172);
+}
+
+.btn-link {
+    color: #3CBCC3;
+}
+
+.btn-outline-warning {
+    color: #EBA63F;
+    border-color: #EBA63F;
+}
+
+.btn-outline-warning:hover { 
+    border-color: #EBA63F;
+    background-color: #EBA63F;
+    color: #1D1D2C;
+}
+
+.btn-link:hover {
+    color: rgb(47, 146, 151);
+    text-decoration: dashed;
+}
+
+.btn-outline-danger {
+    color: #E40C2B !important;
+}
+
+.btn-outline-danger:hover {
+    color: #1D1D2C !important;
+}
+
+.navbar-light .navbar-brand {
+    color: #1D1D2C;
+}
+
+a {
+    color: #3CBCC3;
+}
+
+a:hover{
+    color: rgb(47, 146, 151);
+    text-decoration: dashed;
+}
+
+.page-item.active .page-link {
+    color: rgb(250, 248, 243);
+    border-color: rgb(53, 166, 172);
+    background-color: rgb(53, 166, 172);
+}
+
+.page-link {
+    color: #1D1D2C;
+}
+
+.alert-info {
+
+}
+
+.alert-danger {
+    border-color: #E40C2B;
+    background-color: #E40C2B;
+    color: #1D1D2C;
+}
+
+.alert-warning {
+    border-color: #EBA63F;
+    background-color: #EBA63F;
+    color: #1D1D2C;
+}
+
+.alert-success {
+    border-color: #438945;
+    background-color: #438945;
+    color: #1D1D2C;
+}
+
+.navbar {
+    background-color: #e7e7e7;
+}
+
+.dropdown-item:active {
+    background-color: #3CBCC3;
+}

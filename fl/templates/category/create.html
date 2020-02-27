@@ -1,0 +1,25 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+    <h1>New category</h1>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+
+      <div class="form-group">
+        <label for="nameInput">{{ form.name.label }}</label>
+        {{ form.name(class="form-control", type="text", placeholder="Name", id="nameInput") }}
+        {% if form.name.errors %}
+        {% for error in form.name.errors %}
+        <div class="invalid-feedback">
+          {{ error }}
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+
+      {{ form.submit(class="btn btn-primary") }}
+      <a href="{{ url_for('admin.index') }}" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+  
+{% endblock content %}

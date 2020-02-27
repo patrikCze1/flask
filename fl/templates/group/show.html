@@ -1,0 +1,67 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+    <h1>Group - {{ group.name }}</h1>
+    
+    Role of group:
+
+    {% if role %}
+        <a href="{{ url_for('admin.showRole', id=role.id) }}">{{ role }}</a> 
+    {% else %}
+        None
+    {% endif %}
+
+    <br>
+    Active: {{ group.active }} <br>
+    <br>
+    Description: <br> 
+    <p>{{ group.description }}</p>
+
+    Users in group:
+
+    {% for user in users %}
+        {{ user }}
+    {% endfor %}
+
+    <form method="POST" action="">
+        {{ addForm.hidden_tag() }}
+        <div class="form-group col">
+            <label class="my-1 mr-2" for="userInput">{{ addForm.user.label }}</label>
+            {{ addForm.user(class="form-control") }}
+    
+            {% if addForm.user.errors %}
+            {% for error in addForm.user.errors %}
+            <small class="form-text text-muted">{{ error }}</small>
+            {% endfor %}
+            {% endif %}
+          </div>
+
+          {{ addForm.submit(class="btn btn-primary") }}
+    </form>
+
+    Users not in group:
+
+
+    <hr>
+
+    <div class="btn-group" role="toolbar">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <p class="control">
+                <a href="{{ url_for('admin.updateGroup', id=group.id) }}" class="btn btn-outline-primary">
+                    <i class="fa fa-edit" aria-hidden="true"></i>
+                    Edit
+                </a>
+            </p>
+            <p class="control">
+                <a href="{{ url_for('admin.deleteGroup', id=group.id) }}" class="btn btn-outline-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Delete
+                </a>
+            </p>
+        </div>
+    </div>
+<br>
+    <a href="{{ url_for('admin.groups') }}">Back</a>
+  
+{% endblock content %}

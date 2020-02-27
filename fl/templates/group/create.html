@@ -1,0 +1,54 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+    <h1>New group</h1>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="nameInput">{{ form.name.label }}</label>
+          {{ form.name(class="form-control", type="text", placeholder="Name", id="nameInput") }}
+          {% if form.name.errors %}
+          {% for error in form.name.errors %}
+          <div class="invalid-feedback">
+            {{ error }}
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="form-group col">
+          <label class="my-1 mr-2" for="categoryInput">{{ form.role.label }}</label>
+          {{ form.role(class="form-control") }}
+
+          {% if form.role.errors %}
+          {% for error in form.role.errors %}
+          <small class="form-text text-muted">{{ error }}</small>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="textInput">{{ form.description.label }}</label>
+        {{ form.description(class="form-control", placeholder="Description") }}
+
+        {% if form.description.errors %}
+        {% for error in form.description.errors %}
+        <small id="emailHelp" class="form-text text-muted">{{ error }}</small>
+        {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="form-group form-check">
+        {{ form.active(class="form-check-input") }}
+        <label class="form-check-label" for="exampleCheck1">{{ form.active.label }}</label>
+      </div>
+
+      {{ form.submit(class="btn btn-primary") }}
+      <a href="{{ url_for('admin.groups') }}" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+  
+{% endblock content %}
