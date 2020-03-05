@@ -17,49 +17,50 @@
     </div>
 </div>
 
-            <h1 class="title">
-                {{ post.title }}
-            </h1>
-            <p class="subtitle">
-                by
-                <a href="{{ url_for('users.userProfile', id=post.author.id) }}">
-                    {{ post.author.name }}
-                </a>
-            </p>
-        
+<h1 class="title">
+    {{ post.title }}
+</h1>
+<p class="subtitle">
+    by
+    <a href="{{ url_for('users.userProfile', id=post.author.id) }}">
+        {{ post.author.name }}
+    </a>
+</p>
 
-        <p>{{ post.content }}</p>
+<p>{{ post.content }}</p>
 
-
-        {% if post.author.id == current_user.id %}
-        <div class="field is-grouped">
-            <p class="control">
-                <a href="{{ url_for('posts.updatePost', id=post.id) }}" class="btn btn-outline-primary">
-                    <i class="fa fa-edit" aria-hidden="true"></i>
-                    Edit
-                </a>
-            </p>
-            <p class="control">
-                <a id="deletePost" class="btn btn-outline-danger">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                    Delete
-                </a>
-            </p>
-        </div>
-        {% endif %}
-admin
-        <div class="field is-grouped">
-            <p class="control">
-                <a href="{{ url_for('posts.approvePost', id=post.id) }}" class="btn btn-outline-primary">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                    Approve
-                </a>
-            </p>
-        </div>
-        <a href="{{ url_for('main.home') }}" class="btn btn-link">
-            Back
+{% if post.author.id == current_user.id %}
+<hr>
+<div class="btn-group">
+    <p class="control">
+        <a href="{{ url_for('posts.updatePost', id=post.id) }}" class="btn btn-outline-primary">
+            <i class="fa fa-edit" aria-hidden="true"></i>
+            Edit
         </a>
-    </div>
-</section>
+    </p>
+    <p class="control">
+        <a id="deletePost" class="btn btn-outline-danger">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            Delete
+        </a>
+    </p>
+</div>
+<br>
+{% endif %}
+
+{% if post.approved == False %} admin
+<div class="field is-grouped">
+    <p class="control">
+        <a href="{{ url_for('posts.approvePost', id=post.id) }}" class="btn btn-outline-primary">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            Approve
+        </a>
+    </p>
+</div>
+{% endif %}
+
+<a href="{{ url_for('main.home') }}" class="btn btn-link">
+    Back
+</a>
 
 {% endblock content %}

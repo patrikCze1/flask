@@ -2,66 +2,72 @@
 
 {% block content %}
 
-    <h1>Group - {{ group.name }}</h1>
-    
-    Role of group:
+<h1>Group - {{ group.name }}</h1>
 
-    {% if role %}
-        <a href="{{ url_for('admin.showRole', id=role.id) }}">{{ role }}</a> 
-    {% else %}
-        None
-    {% endif %}
+<b>Role of group:</b>
 
-    <br>
-    Active: {{ group.active }} <br>
-    <br>
-    Description: <br> 
-    <p>{{ group.description }}</p>
+{% if role %}
+    <a href="{{ url_for('admin.showRole', id=role.id) }}">{{ role }}</a>
+{% else %}
+    None
+{% endif %}
 
-    Users in group:
+<p><b>Active:</b> {{ group.active }} </p>
 
-    {% for user in users %}
-        {{ user }}
-    {% endfor %}
+<p><b>Description:</b><br>
+    {{ group.description }}</p>
 
+<b>Users in group:</b>
+
+{% for user in users %}
+    {{ user }}
+{% endfor %}
+
+<br>
+<a class="btn btn-primary mt-4" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Open form
+</a>
+
+<div class="collapse mt-4 bg-white p-2" id="collapseForm">
     <form method="POST" action="">
+        <h2>Add user into group</h2>
         {{ addForm.hidden_tag() }}
-        <div class="form-group col">
+        <div class="form-group">
             <label class="my-1 mr-2" for="userInput">{{ addForm.user.label }}</label>
             {{ addForm.user(class="form-control") }}
-    
+
             {% if addForm.user.errors %}
-            {% for error in addForm.user.errors %}
-            <small class="form-text text-muted">{{ error }}</small>
-            {% endfor %}
+                {% for error in addForm.user.errors %}
+                    <small class="form-text text-muted">{{ error }}</small>
+                {% endfor %}
             {% endif %}
-          </div>
-
-          {{ addForm.submit(class="btn btn-primary") }}
-    </form>
-
-    Users not in group:
-
-
-    <hr>
-
-    <div class="btn-group" role="toolbar">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            <p class="control">
-                <a href="{{ url_for('admin.updateGroup', id=group.id) }}" class="btn btn-outline-primary">
-                    <i class="fa fa-edit" aria-hidden="true"></i>
-                    Edit
-                </a>
-            </p>
-            <p class="control">
-                <a href="{{ url_for('admin.deleteGroup', id=group.id) }}" class="btn btn-outline-danger">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                    Delete
-                </a>
-            </p>
         </div>
-    </div>
+
+        {{ addForm.submit(class="btn btn-primary") }}
+    </form>
+</div>
+
 <br>
-    <a href="{{ url_for('admin.groups') }}">Back</a>
-  
+<b>Users not in group:</b>
+<hr>
+
+<div class="btn-group" role="toolbar">
+    <div class="btn-group mr-2" role="group" aria-label="First group">
+        <p class="control">
+            <a href="{{ url_for('admin.updateGroup', id=group.id) }}" class="btn btn-outline-primary">
+                <i class="fa fa-edit" aria-hidden="true"></i>
+                Edit
+            </a>
+        </p>
+        <p class="control">
+            <a href="{{ url_for('admin.deleteGroup', id=group.id) }}" class="btn btn-outline-danger">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                Delete
+            </a>
+        </p>
+    </div>
+</div>
+<br>
+<a href="{{ url_for('admin.groups') }}">Back</a>
+
 {% endblock content %}

@@ -12,6 +12,7 @@ posts = Blueprint('posts', __name__)
 @login_required
 def createPost():
     form = CreatePost()
+
     if request.method == 'POST' and form.validate_on_submit():
         #print(form.category.data)
         post = Post(title=form.title.data, content=form.text.data, author=current_user, category_id=form.category.data.id)
@@ -19,11 +20,10 @@ def createPost():
         db.session.commit()
         flash('Post was send to approval', 'success')
 
-        posts = checkUnapprovedPosts().count()
-        session['newPostNotify'] = posts
+        session['newPostNotify'] = checkUnapprovedPosts().count()
         return redirect(url_for('main.home'))
     else:
-        print(session['newPostNotify'])
+        session['newPostNotify'] = checkUnapprovedPosts().count()
         return render_template('./post/create.html', title='New post', form=form)
 
 
@@ -80,6 +80,6 @@ def approvePost(id):
     post.approved = True
     db.session.commit()
     flash('Post has been approved', 'success')
-    posts = checkUnapprovedPosts().count()
-    session['newPostNotify'] = posts
+    
+    session['newPostNotify'] = checkUnapprovedPosts().count()
     return redirect(url_for('posts.waitingPosts'))

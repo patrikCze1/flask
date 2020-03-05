@@ -2,81 +2,74 @@
 
 {% block content %}
 
-<section class="is-medium">
-  <div class="container">
-    <div class="columns is-mobile">
-      <div class="column is-half is-offset-one-quarter">
-        <h1>Register</h1>
+<h1>Register</h1>
 
-        <form method="POST" action="">
-          {{ form.hidden_tag() }}
+<form method="POST" action="">
+  {{ form.hidden_tag() }}
 
-          <div class="form-group">
-            <label for="nameInput">{{ form.username.label }}</label>
-            {{ form.username(class='form-control', type='text', placeholder='Username') }}
+  <div class="form-group">
+    <label for="nameInput">{{ form.username.label }}</label>
+    {{ form.username(class='form-control', type='text', placeholder='Username') }}
 
-            {% if form.username.errors %}
-            {% for error in form.username.errors %}
-            <div class="invalid-feedback">
-              {{ error }}
-            </div>
-            {% endfor %}
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="emailInput">{{ form.email.label }}</label>
-            {{ form.email(class='form-control', type='email', placeholder='Email') }}
-
-            {% if form.email.errors %}
-            {% for error in form.email.errors %}
-            <div class="invalid-feedback">
-              {{ error }}
-            </div>
-            {% endfor %}
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="passwordInput">{{ form.password.label }}</label>
-            {{ form.password(class="form-control", type="password", placeholder="Password") }}
-
-            {% if form.password.errors %}
-            {% for error in form.password.errors %}
-            <div class="invalid-feedback">
-              {{ error }}
-            </div>
-            {% endfor %}
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="confirmInput">{{ form.confirm.label }}</label>
-            {{ form.confirm(class="form-control", type="password", placeholder="Password again") }}
-
-            {% if form.confirm.errors %}
-            {% for error in form.confirm.errors %}
-            <div class="invalid-feedback">
-              {{ error }}
-            </div>
-            {% endfor %}
-            {% endif %}
-          </div>
-
-          <div class="form-group form-check">
-            {{ form.accept_tos(class="form-check-input") }}
-            <label class="form-check-label" for="exampleCheck1">{{ form.accept_tos.label }}</label>
-          </div>
-
-          {{ form.submit(class="btn btn-primary") }}
-
-        </form>
-        <hr>
-        <div class="is-centered">
-          <small>Or you can <a href="{{ url_for('users.login') }}">login.</a></small>
-        </div>
-      </div>
+    {% if form.username.errors %}
+    {% for error in form.username.errors %}
+    <div class="invalid-feedback">
+      {{ error }}
     </div>
+    {% endfor %}
+    {% endif %}
   </div>
-</section>
+
+  <div class="form-group">
+    <label for="emailInput">{{ form.email.label }}</label>
+    {{ form.email(class='form-control', type='email', placeholder='Email') }}
+
+    {% if form.email.errors %}
+    {% for error in form.email.errors %}
+    <div class="invalid-feedback">
+      {{ error }}
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="form-group">
+    <label for="passwordInput">{{ form.password.label }}</label>
+    {{ form.password(class="form-control", type="password", placeholder="Password") }}
+
+    {% if form.password.errors %}
+    {% for error in form.password.errors %}
+    <div class="invalid-feedback">
+      {{ error }}
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="form-group">
+    <label for="confirmInput">{{ form.confirm.label }}</label>
+    {{ form.confirm(class="form-control", type="password", placeholder="Password again") }}
+
+    {% if form.confirm.errors %}
+    {% for error in form.confirm.errors %}
+    <div class="invalid-feedback">
+      {{ error }}
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="form-group form-check">
+    {{ form.accept_tos(class="form-check-input") }}
+    <label class="form-check-label" for="exampleCheck1">{{ form.accept_tos.label }}</label>
+  </div>
+
+  {{ form.submit(class="btn btn-primary") }}
+
+</form>
+<hr>
+<div class="is-centered text-center">
+  <small>Or you can <a href="{{ url_for('users.login') }}">login.</a></small>
+</div>
+
 {% endblock content %}

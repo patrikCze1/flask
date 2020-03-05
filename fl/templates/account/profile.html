@@ -1,40 +1,42 @@
 {% extends 'template.html' %}
 
 {% block content %}
+<div class="row">
+    <div class="col-3">
+        <figure class="image is-128x128">
+            <img src="{{ url_for('static', filename='pictures/' + user.image_file) }}" class="is-rounded"
+            alt="Profile pic">
+        </figure>
 
-                    <figure class="image is-128x128">
-                        <img src="{{ url_for('static', filename='pictures/' + user.image_file) }}" class="is-rounded"
-                            alt="Profile pic">
-                    </figure>
-                
-                    <h1 class="title">
-                        {{ user.name }}
-                    </h1>
-                
+        <h1 class="title">
+            {{ user.name }}
+        </h1>
+    </div>
+
+    <div class="col-auto">
         <h2>Info</h2>
         <p>
-            {{ user.email }}
+            email: {{ user.email }}
         </p>
-
-        {{ user.group_id }}
+    </div>
+</div>
 
 {% if user.id == current_user.id %}
-                <a href="{{ url_for('users.updateUser') }}" class="btn btn-outline-primary">
-                    <i class="fa fa-edit" aria-hidden="true"> </i>
-                    Update profile
-                </a>
-            </p>
-            <p class="control">
-                <a href="{{ url_for('users.changePassword') }}" class="btn btn-outline-warning">
-                    <i class="fa fa-lock" aria-hidden="true"> </i>
-                    Change password
-                </a>
-            </p>
-        </div>
-    </div>
-</section>
+<div class="btn-group-vertical">
+    <a href="{{ url_for('users.updateUser') }}" class="btn btn-outline-primary">
+        <i class="fa fa-edit" aria-hidden="true"> </i>
+        Update profile
+    </a>
+
+    <p class="control">
+        <a href="{{ url_for('users.changePassword') }}" class="btn btn-outline-warning">
+            <i class="fa fa-lock" aria-hidden="true"> </i>
+            Change password
+        </a>
+    </p>
+</div>
 {% else %}
-send message
+    send message
 {% endif %}
 
 {% endblock content %}

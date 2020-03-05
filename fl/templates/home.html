@@ -1,8 +1,6 @@
 {% extends 'template.html' %}
 
 {% block content %}
-
-<div class="container">
     <h1 class="title">
         Home
     </h1>
@@ -21,9 +19,9 @@
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <p>{{ post.content[:30] }}</p>
+                <p>{{ post.content[:30] }}...</p>
                 <footer class="blockquote-footer">
-                    <a href="{{ url_for('users.userProfile', id=post.author.id) }}">{{ post.author.name }}</a>
+                    By <a href="{{ url_for('users.userProfile', id=post.author.id) }}">{{ post.author.name }}</a>
                 </footer>
               </blockquote>
             </div>

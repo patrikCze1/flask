@@ -4,13 +4,12 @@
 
     <h1>Role - {{ role.name }}</h1>
 
-    {{ role.id }}
-    {{ role.active }}
-    {{ role.name }}
-    {{ role.value }}
-    {{ role.description }}
+    <p><b>Active: </b>{{ role.active }}</p>
+    <p><b>Value: </b>{{ role.value }}</p>
+    <p><b>Description: </b><br>{{ role.description }}</p>
 
-    <div class="field is-grouped">
+    <hr>
+    <div class="btn-group" role="toolbar">
         <p class="control">
             <a href="{{ url_for('admin.updateRole', id=role.id) }}" class="btn btn-outline-primary">
                 <i class="fa fa-edit" aria-hidden="true"></i>
@@ -24,7 +23,8 @@
             </a>
         </p>
     </div>
-        
+    <br>
+
     <a href="{{ url_for('admin.roles') }}">Back</a>
 
 {% endblock content %}

@@ -1,35 +1,42 @@
 {% extends 'template.html' %}
 
 {% block content %}
+<div class="row">
+  <div class="col-3">
+    <img src="{{ url_for('static', filename='pictures/' + current_user.image_file) }}" class="is-rounded"
+      alt="Profile pic">
 
-<img src="{{ url_for('static', filename='pictures/' + current_user.image_file) }}" class="is-rounded" alt="Profile pic">
-
-<h1 class="title">
-  {{ current_user.name }}
-</h1>
-
-<h2>Update profile</h2>
-
-<form method="POST" action="" enctype="multipart/form-data">
-  {{ form.hidden_tag() }}
-
-  <div class="custom-file mb-2">
-    {{ form.image(class="custom-file-input", type="file") }}
-    <label class="custom-file-label" for="customFile">{{ form.image.label }}</label>
-
-    {% if form.image.errors %}
-    {% for error in form.image.errors %}
-    <div class="invalid-feedback">
-      {{ error }}
-    </div>
-    {% endfor %}
-    {% endif %}
+    <h1 class="title">
+      {{ current_user.name }}
+    </h1>
   </div>
 
-  {{ form.submit(class="btn btn-primary") }}
-  <a href="{{ url_for('users.userProfile', id=current_user.id) }}" class="btn btn-outline-secondary">Cancel</a>
+  <div class="col-9">
+    <h2>Update profile</h2>
+    <form method="POST" action="" enctype="multipart/form-data">
+      <div class="form-group">
+        {{ form.hidden_tag() }}
 
-</form>
+        <div class="custom-file mb-2">
+          {{ form.image(class="custom-file-input", type="file") }}
+          <label class="custom-file-label" for="customFile">{{ form.image.label }}</label>
+        </div>
+          {% if form.image.errors %}
+          {% for error in form.image.errors %}
+          <div class="invalid-feedback">
+            {{ error }}
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+
+        {{ form.submit(class="btn btn-primary") }}
+        <a href="{{ url_for('users.userProfile', id=current_user.id) }}" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+  </div>
+</div>
+
+
 
 <a href="{{ url_for('users.userProfile', id=current_user.id) }}">
   Back

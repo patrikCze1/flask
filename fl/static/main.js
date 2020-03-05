@@ -12,6 +12,6 @@ function hideModal() {
     document.getElementById('modal').style.display = 'none';
 }
 
-document.getElementById("deletePost").addEventListener("click", function(){
+document.getElementById("deletePost").addEventListener("onclick", function(){
     document.getElementsById('modal').style.display = 'block';
 });
